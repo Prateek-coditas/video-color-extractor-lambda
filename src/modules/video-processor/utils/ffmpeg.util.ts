@@ -52,13 +52,6 @@ export class FfmpegUtil {
     }
   }
 
-  /**
-   * Extracts a single frame from a video at a specific timestamp
-   * CRITICAL FIX: Uses -ss BEFORE -i for fast keyframe seeking
-   * @param videoUrl - Direct video file URL (S3, CDN, or direct .mp4/.mov etc)
-   * @param timestampMs - Timestamp in milliseconds
-   * @returns Buffer containing the resized frame image data (JPEG format)
-   */
   static async extractFrame(
     videoUrl: string,
     timestampMs: number,
