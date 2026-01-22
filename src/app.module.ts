@@ -3,7 +3,5 @@ import { VideoProcessorModule } from './modules/video-processor/video-processor.
 
 @Module({
   imports: [VideoProcessorModule],
-  controllers: [],
-  providers: [],
 })
-export class AppModule {}
+export class AppModule { }

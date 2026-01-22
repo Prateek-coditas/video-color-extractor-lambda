@@ -111,8 +111,8 @@ export class VideoProcessorService {
     return this.repository.getCacheStats();
   }
 
-  clearCache(): void {
-    this.repository.clearCache();
+  clearCache(): number {
+    return this.repository.clearCache();
   }
 }
 

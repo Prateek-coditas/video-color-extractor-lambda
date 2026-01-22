@@ -7,10 +7,10 @@ export class VideoProcessorRepository {
 
   constructor() {
     this.cache = new NodeCache({
-      stdTTL: 3600,           
-      maxKeys: 10000,         
-      checkperiod: 600,       
-      useClones: false,       
+      stdTTL: 3600,
+      maxKeys: 10000,
+      checkperiod: 600,
+      useClones: false,
     });
   }
 
@@ -54,24 +54,13 @@ export class VideoProcessorRepository {
   }
 
 
-  clearCache(): void {
+  clearCache(): number {
+    const count = this.cache.keys().length;
     this.cache.flushAll();
+    return count;
   }
 
   getCacheStats() {
     return this.cache.getStats();
-  }
-  
-  deleteCacheEntry(videoUrl: string, timestampMs?: number): void {
-    if (timestampMs !== undefined) {
-      this.cache.del(`color:${videoUrl}:${timestampMs}`);
-    } else {
-      const keys = this.cache.keys();
-      keys.forEach(key => {
-        if (key.includes(videoUrl)) {
-          this.cache.del(key);
-        }
-      });
-    }
   }
 }

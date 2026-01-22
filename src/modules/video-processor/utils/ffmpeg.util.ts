@@ -15,7 +15,7 @@ export class FfmpegUtil {
       await fs.mkdir(this.TEMP_DIR, { recursive: true });
     }
   }
-
+  
   static initCleanup(): void {
     if (this.cleanupInterval) return;
 
@@ -51,6 +51,9 @@ export class FfmpegUtil {
     } catch (error) {
     }
   }
+  /*
+    
+  */
 
   static async extractFrame(
     videoUrl: string,
