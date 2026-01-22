@@ -61,7 +61,7 @@ export class VideoProcessorRepository {
   getCacheStats() {
     return this.cache.getStats();
   }
-
+  
   deleteCacheEntry(videoUrl: string, timestampMs?: number): void {
     if (timestampMs !== undefined) {
       this.cache.del(`color:${videoUrl}:${timestampMs}`);

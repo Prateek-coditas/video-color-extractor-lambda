@@ -23,7 +23,6 @@ export class VideoProcessorService {
     dto: ExtractColorsDto,
   ): Promise<ExtractColorsResponseDto> {
     try {
-      // Business logic validation: Ensure exactly one input method is provided
       const hasTimestamps = dto.timestamps && dto.timestamps.length > 0;
       const hasPercentages = dto.percentages && dto.percentages.length > 0;
 
@@ -41,17 +40,15 @@ export class VideoProcessorService {
 
       const videoDuration = await this.repository.getVideoDuration(dto.videoUrl);
 
-      // Convert percentages to timestamps if percentages were provided
       let timestamps: number[];
       if (dto.percentages && dto.percentages.length > 0) {
         timestamps = dto.percentages.map(percentage =>
           Math.floor((percentage / 100) * videoDuration)
         );
       } else {
-        timestamps = dto.timestamps!; // Use provided timestamps
+        timestamps = dto.timestamps!;
       }
 
-      // Validate timestamps don't exceed video duration
       const invalidTimestamps = timestamps.filter(
         (ts) => ts > videoDuration,
       );
@@ -106,7 +103,6 @@ export class VideoProcessorService {
     }
   }
 
-
   async validateFfmpeg(): Promise<boolean> {
     return this.repository.isFfmpegAvailable();
   }
@@ -119,3 +115,5 @@ export class VideoProcessorService {
     this.repository.clearCache();
   }
 }
+
+
