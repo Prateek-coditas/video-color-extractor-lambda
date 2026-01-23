@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import PQueue from 'p-queue';
-import { VideoProcessorRepository } from './video-processor.repository';
+import { VideoProcessorRepository } from './video.processor.repository';
 import {
   ExtractColorsDto,
   ExtractColorsResponseDto,

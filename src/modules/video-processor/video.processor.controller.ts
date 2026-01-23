@@ -13,7 +13,7 @@ import {
   ApiResponse,
   ApiBody,
 } from '@nestjs/swagger';
-import { VideoProcessorService } from './video-processor.service';
+import { VideoProcessorService } from './video.processor.service';
 import {
   ExtractColorsDto,
   ExtractColorsResponseDto,
@@ -22,7 +22,7 @@ import {
 @ApiTags('video')
 @Controller('video')
 export class VideoProcessorController {
-  constructor(private readonly videoProcessorService: VideoProcessorService) {}
+  constructor(private readonly videoProcessorService: VideoProcessorService) { }
 
   @Post('extract-colors')
   @HttpCode(HttpStatus.OK)
