@@ -1,0 +1,60 @@
+# Development files
+src/
+test/
+tests/
+*.spec.ts
+*.test.ts
+.eslintrc.js
+.prettierrc
+nest-cli.json
+tsconfig.json
+
+# Build artifacts not needed
+*.ts
+*.map
+tsconfig.tsbuildinfo
+
+# Version control
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Development dependencies (when using production install)
+node_modules/@nestjs/cli/
+node_modules/@nestjs/schematics/
+node_modules/@nestjs/testing/
+node_modules/@types/
+node_modules/@typescript-eslint/
+node_modules/eslint/
+node_modules/jest/
+node_modules/prettier/
+node_modules/ts-jest/
+node_modules/ts-loader/
+node_modules/ts-node/
+node_modules/typescript/
+
+# Temporary files
+temp-frames/
+*.tmp
+*.temp
+*.log
+
+# Package files
+package-lock.json
+.npmrc
+
+# Brain/artifacts
+.gemini/
+.antigravityignore
+
+# Lambda deployment artifacts
+lambda-deploy/
+lambda-deployment.zip
