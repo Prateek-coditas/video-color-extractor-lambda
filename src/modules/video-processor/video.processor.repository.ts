@@ -53,7 +53,6 @@ export class VideoProcessorRepository {
     return FfmpegUtil.isFfmpegAvailable();
   }
 
-
   clearCache(): number {
     const count = this.cache.keys().length;
     this.cache.flushAll();

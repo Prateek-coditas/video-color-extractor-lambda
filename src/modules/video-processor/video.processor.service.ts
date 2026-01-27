@@ -115,5 +115,3 @@ export class VideoProcessorService {
     return this.repository.clearCache();
   }
 }
-
-

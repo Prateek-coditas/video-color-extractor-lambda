@@ -16,10 +16,6 @@ export class ColorUtil {
     }
   }
   
-  /**
-   * Alternative: Extract average color (faster, less vibrant)
-   * Use this if dominant colors are too saturated for your use case
-   */
   static async extractAverageColor(imageBuffer: Buffer): Promise<string> {
     try {
       const color = await getAverageColor(imageBuffer, {

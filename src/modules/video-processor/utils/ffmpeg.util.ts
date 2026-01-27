@@ -7,7 +7,6 @@ export class FfmpegUtil {
   private static readonly TEMP_DIR = path.join(process.cwd(), 'temp-frames');
   private static cleanupInterval: NodeJS.Timeout | null = null;
   
-  // using this to store extracted frames temporarily
   private static async ensureTempDir(): Promise<void> {
     try {
       await fs.access(this.TEMP_DIR);
@@ -15,14 +14,13 @@ export class FfmpegUtil {
       await fs.mkdir(this.TEMP_DIR, { recursive: true });
     }
   }
-  
   static initCleanup(): void {
     if (this.cleanupInterval) return;
 
     this.cleanupInterval = setInterval(async () => {
       await this.cleanupOldTempFiles();
     }, 10 * 60 * 1000);
-
+    
     process.on('beforeExit', async () => {
       if (this.cleanupInterval) {
         clearInterval(this.cleanupInterval);
@@ -30,7 +28,6 @@ export class FfmpegUtil {
       await this.cleanupOldTempFiles();
     });
   }
-
   private static async cleanupOldTempFiles(): Promise<void> {
     try {
       await this.ensureTempDir();
@@ -51,10 +48,6 @@ export class FfmpegUtil {
     } catch (error) {
     }
   }
-  /*
-    
-  */
-
   static async extractFrame(
     videoUrl: string,
     timestampMs: number,
@@ -65,15 +58,12 @@ export class FfmpegUtil {
         '(e.g., .mp4, .avi, .mov) or an S3/CDN URL.'
       );
     }
-
     await this.ensureTempDir();
-
     const timestampSeconds = timestampMs / 1000;
     const outputPath = path.join(
       this.TEMP_DIR,
       `frame_${Date.now()}_${Math.random().toString(36).substring(7)}.jpg`,
     );
-
     return new Promise((resolve, reject) => {
       ffmpeg(videoUrl)
         .inputOptions([
@@ -113,7 +103,6 @@ export class FfmpegUtil {
         .run();
     });
   }
-
   private static isValidVideoUrl(videoUrl: string): boolean {
     try {
       new URL(videoUrl);
@@ -123,10 +112,7 @@ export class FfmpegUtil {
 
     const lowerUrl = videoUrl.toLowerCase();
 
-    const videoExtensions = [
-      '.mp4', '.avi', '.mov', '.mkv', '.webm', 
-      '.flv', '.wmv', '.m4v', '.mpeg', '.mpg'
-    ];
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv', '.webm', '.flv', '.wmv', '.m4v', '.mpeg', '.mpg'];
     const hasVideoExtension = videoExtensions.some(ext => lowerUrl.includes(ext));
     if (hasVideoExtension) {
       return true;
